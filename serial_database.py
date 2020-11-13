@@ -65,6 +65,17 @@ def main():
                 print(v)
                 print(x)
         return txn
+    def get_digit(str1):
+        c = ""
+        for i in str1:
+            if i.isdigit():
+                c += i
+        return int(c)
+    def beginTransaction(str):
+        tranNumber = get_digit(str)
+        print("============================ Begin Transaction %d =============================" % (tranNumber))
+        #temp = int(len(transactionTableObjects)) + 1
+        #transactionTableObjects.append(transactionTable(tranNumber, temp, AC))
 
     #==============================================================BUAT INPUT==============================================================
     incr_x = incr_vars(['x'])
@@ -72,29 +83,37 @@ def main():
     incr_z = incr_vars(['z'])
     incr_all = incr_vars(['x', 'y', 'z'])
 
+    transaction = [[], [], [], []]
+
     db = SerialDatabase()
     assert(db.data == {})
     #print("db.data = " + str(db.data))
 
+    statusTrans = [True, True, True]
     inputDariFile = []
-    operasiArr = []
     with open("input.txt", 'r') as text:
         for line in text:
             inputDariFile.append(line)
     for operasi in inputDariFile:
         #print(operasi)
         if operasi.find('b') == 1:
-            print("MULAI")
+            print("=====================================MULAI=====================================")
 
         if operasi.find('b') != -1:
-            print("Transaction Start")
-            
+            beginTransaction(operasi)
         elif operasi.find('r') != -1:
-            print("BACA")
+            print("=====================================READ=====================================")
         elif operasi.find('w') != -1:
-            print("TULIS")
+            print("=====================================WRITE=====================================")
         elif operasi.find("e") != -1:
-            print("END")
+            print("=====================================END=====================================")
+        #print(operasi)
+    for i in range(0, len(statusTrans)):
+        if (statusTrans[i] == False):
+            print("Validasi T"+str(i+1)+" gagal dieksekusi")
+        else:
+            print("Validasi T"+str(i+1)+" berhasil dieksekusi")
+
 
     """
     incr_x = incr_vars(['x'])
