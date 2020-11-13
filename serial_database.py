@@ -66,6 +66,25 @@ def main():
                 print(x)
         return txn
 
+    #==============================================================BUAT INPUT==============================================================
+    incr_x = incr_vars(['x'])
+    incr_y = incr_vars(['y'])
+    incr_z = incr_vars(['z'])
+    incr_all = incr_vars(['x', 'y', 'z'])
+
+    db = SerialDatabase()
+    assert(db.data == {})
+    print("db.data = " + str(db.data))
+
+    inputDariFile = []
+    with open("input.txt", 'r') as text:
+        for line in text:
+            inputDariFile.append(line)
+    for perintah in inputDariFile:
+        print(perintah)
+        if (perintah == "b1"):
+            pass
+    """
     incr_x = incr_vars(['x'])
     incr_y = incr_vars(['y'])
     incr_z = incr_vars(['z'])
@@ -78,7 +97,7 @@ def main():
     t_init = db.begin(init)
     t_init.read_phase()
     assert(t_init.validate_and_write_phase())
-    assert(db.data == {'x': 0, 'y': 0, 'z': 0})
+    #assert(db.data == {'x': 0, 'y': 0, 'z': 0})
     print(db.data)
 
     # t_1 and t_2 run concurrently and have conflicting read and write sets, so
@@ -105,6 +124,7 @@ def main():
     assert(t_4.validate_and_write_phase())
     assert(db.data == {'x': 2, 'y': 2, 'z': 1})
     print(db.data)
+    """
 
 if __name__ == '__main__':
     main()
