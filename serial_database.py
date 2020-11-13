@@ -74,16 +74,25 @@ def main():
 
     db = SerialDatabase()
     assert(db.data == {})
-    print("db.data = " + str(db.data))
+    #print("db.data = " + str(db.data))
 
     inputDariFile = []
+    operasiArr = []
     with open("input.txt", 'r') as text:
         for line in text:
             inputDariFile.append(line)
-    for perintah in inputDariFile:
-        print(perintah)
-        if (perintah == "b1"):
+    for operasi in inputDariFile:
+        if operasi.find('b') == 1:
             pass
+        if operasi.find('b') == -1:
+            pass
+        elif operasi.find('r') != -1:
+            pass
+        elif operasi.find('w') != -1:
+            pass
+        elif operasi.find("e") != -1:
+            print("END")
+
     """
     incr_x = incr_vars(['x'])
     incr_y = incr_vars(['y'])
