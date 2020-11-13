@@ -89,7 +89,7 @@ def main():
     assert(db.data == {})
     #print("db.data = " + str(db.data))
 
-    statusTrans = [True, True, True]
+    statusTrans = []
     inputDariFile = []
     n = 0
     with open("input.txt", 'r') as text:
@@ -102,6 +102,7 @@ def main():
             #print("=====================================MULAI=====================================")
 
         if operasi.find('b') != -1:
+            statusTrans.append(True)
             n += 1
             #beginTransaction(operasi)
             tranNumber = get_digit(operasi)
@@ -114,10 +115,11 @@ def main():
         elif operasi.find('w') != -1:
             #print("=====================================WRITE=====================================")
             tranNumber = get_digit(operasi)
-            temp = False
+            temp = True
             for isi in transaksi[n-1]:
-                if (tranNumber == n):
-                    temp = True
+                if(isi != tranNumber):
+                    temp = False
+                print("Isinya adalah: " + str(isi))
             statusTrans[n-1] = temp
         elif operasi.find("e") != -1:
             pass
@@ -128,6 +130,8 @@ def main():
             print("Validasi T"+str(i+1)+" gagal dieksekusi")
         else:
             print("Validasi T"+str(i+1)+" berhasil dieksekusi")
+    print(transaksi)
+    print(statusTrans)
 
 
     """
