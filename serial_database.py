@@ -83,7 +83,7 @@ def main():
     incr_z = incr_vars(['z'])
     incr_all = incr_vars(['x', 'y', 'z'])
 
-    transaction = [[], [], [], []]
+    transaksi = [[], [], []]
 
     db = SerialDatabase()
     assert(db.data == {})
@@ -98,20 +98,30 @@ def main():
     for operasi in inputDariFile:
         #print(operasi)
         if operasi.find('b') == 1:
-            print("=====================================MULAI=====================================")
+            pass
+            #print("=====================================MULAI=====================================")
 
         if operasi.find('b') != -1:
             n += 1
-            beginTransaction(operasi)
+            #beginTransaction(operasi)
             tranNumber = get_digit(operasi)
             if(tranNumber != n):
                 statusTrans[n-1] = False
         elif operasi.find('r') != -1:
-            print("=====================================READ=====================================")
+            #print("=====================================READ=====================================")
+            tranNumber = get_digit(operasi)
+            transaksi[n-1].append(tranNumber)
         elif operasi.find('w') != -1:
-            print("=====================================WRITE=====================================")
+            #print("=====================================WRITE=====================================")
+            tranNumber = get_digit(operasi)
+            temp = False
+            for isi in transaksi[n-1]:
+                if (tranNumber == n):
+                    temp = True
+            statusTrans[n-1] = temp
         elif operasi.find("e") != -1:
-            print("=====================================END=====================================")
+            pass
+            #print("=====================================END=====================================")
         #print(operasi)
     for i in range(0, len(statusTrans)):
         if (statusTrans[i] == False):
