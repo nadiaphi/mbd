@@ -82,14 +82,17 @@ def main():
         for line in text:
             inputDariFile.append(line)
     for operasi in inputDariFile:
+        #print(operasi)
         if operasi.find('b') == 1:
-            pass
-        if operasi.find('b') == -1:
-            pass
+            print("MULAI")
+
+        if operasi.find('b') != -1:
+            print("Transaction Start")
+            
         elif operasi.find('r') != -1:
-            pass
+            print("BACA")
         elif operasi.find('w') != -1:
-            pass
+            print("TULIS")
         elif operasi.find("e") != -1:
             print("END")
 
