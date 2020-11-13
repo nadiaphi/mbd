@@ -91,6 +91,7 @@ def main():
 
     statusTrans = [True, True, True]
     inputDariFile = []
+    n = 0
     with open("input.txt", 'r') as text:
         for line in text:
             inputDariFile.append(line)
@@ -100,7 +101,11 @@ def main():
             print("=====================================MULAI=====================================")
 
         if operasi.find('b') != -1:
+            n += 1
             beginTransaction(operasi)
+            tranNumber = get_digit(operasi)
+            if(tranNumber != n):
+                statusTrans[n-1] = False
         elif operasi.find('r') != -1:
             print("=====================================READ=====================================")
         elif operasi.find('w') != -1:
