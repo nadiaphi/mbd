@@ -112,12 +112,13 @@ def main():
             #print("=====================================READ=====================================")
             tranNumber = get_digit(operasi)
             transaksi[n-1].append(tranNumber)
+            n = tranNumber
         elif operasi.find('w') != -1:
             #print("=====================================WRITE=====================================")
             tranNumber = get_digit(operasi)
             temp = True
-            for isi in transaksi[n-1]:
-                if(isi != tranNumber):
+            for isi in transaksi[tranNumber-1]:
+                if(isi != n):
                     temp = False
                 print("Isinya adalah: " + str(isi))
             statusTrans[n-1] = temp
